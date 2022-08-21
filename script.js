@@ -1,7 +1,7 @@
 let myLibrary = [];
+
 const bookshelf = document.querySelector('.bookshelf')
 let addBookForm = document.forms.addBook
-
 
 function Book(title, author, pages, read) {
    this.title = title;
@@ -13,7 +13,6 @@ function Book(title, author, pages, read) {
    }
 }
 
-
 addBookForm.addEventListener('submit', e => {
    e.preventDefault()
    let title = (document.querySelector('#title__book').value)
@@ -21,27 +20,56 @@ addBookForm.addEventListener('submit', e => {
    let pages = (document.querySelector('#pages__book').value)
    let read = (document.querySelector('#book__read').checked)
    addBookToLibrary(title, author, pages, read)
-   // console.log(title, author, pages, read)
    e.target.reset()
-
-   // title = '';
-   // author = '';
-   // pages = '';
-   // read = false;
-
 })
+
+const showBooks = (newBook) => {
+   bookshelf.insertAdjacentHTML("beforeend", `<div class="book" data-num="${myLibrary.indexOf(newBook)}">
+         <div class="book__title">${newBook.title}</div>
+         <div class="book__author">${newBook.author}</div>
+         <div class="book__pages">${newBook.pages}</div>
+         <div class="book__isread">
+            <input type="checkbox" ${newBook.read ? "checked" : ""}>
+            <label for="" class="read__yes">Yes</label>
+            <label for="" class="read__no">No</label>
+         </div>
+         <button type="button" class="book__remove">Delete</button>
+      </div>`)
+}
 
 
 function addBookToLibrary(title, author, pages, read) {
-   bookshelf.insertAdjacentHTML("afterbegin", `<div class="book">
-   <div class="book__title">${title}</div>
-   <div class="book__author">${author}</div>
-   <div class="book__pages">${pages}</div>
-   <div class="book__isread">
-      <input type="checkbox" ${read ? "checked" : ""}>
-      <label for="" class="read__yes">Yes</label>
-      <label for="" class="read__no">No</label>
-   </div>
-   <button type="button" class="book__remove">Delete</button>
-</div>`)
+   let newBook = new Book(title, author, pages, read)
+   myLibrary = [...myLibrary, newBook]
+   showBooks(newBook)
+}
+
+bookshelf.addEventListener('click', e => {
+   if (e.target.tagName !== 'BUTTON') {
+      return
+   }
+   let bookIndex = e.target.parentNode.dataset.num
+   removeBookFromLibrary(bookIndex)
+})
+
+function removeBookFromLibrary(index) {
+   myLibrary.splice(index, 1)
+   bookshelf.innerHTML = ''
+   renderAllBooks(myLibrary)
+}
+
+const renderAllBooks = (lib) => {
+   lib.forEach((book) => {
+      bookshelf.insertAdjacentHTML("beforeend", `<div class="book" data-num="${myLibrary.indexOf(book)}">
+      <div class="book__title">${book.title}</div>
+      <div class="book__author">${book.author}</div>
+      <div class="book__pages">${book.pages}</div>
+      <div class="book__isread">
+         <input type="checkbox" ${book.read ? "checked" : ""}>
+         <label for="" class="read__yes">Yes</label>
+         <label for="" class="read__no">No</label>
+      </div>
+      <button type="button" class="book__remove">Delete</button>
+   </div>`)
+   })
 }
