@@ -19,25 +19,27 @@
 
             <div class="add__title">
                <p>Enter book title</p>
-               <input required type="text" id="title__book">
+               <input required type="text" minlength="2" id="title__book"
+                  pattern="^[a-zA-Zа-яА-Яё0-9\.\,\-\=\+\s\!\?\:]+$">
             </div>
 
-            <div class="add__author">
+            <div class=" add__author">
                <p>Enter author's name</p>
-               <input required type="text" id="author__book">
+               <input required type="text" minlength="2" id="author__book"
+                  pattern="^([a-zA-Zа-яА-Яё]+[\s]{0,1}[a-zA-Zа-яА-Яё]+)+$">
             </div>
 
             <div class="add__pages">
                <p>Enter number of pages</p>
-               <input required type="text" id="pages__book">
+               <input required type="number" min="1" id="pages__book" pattern="^[0-9]+$">
             </div>
 
             <div class="add__isread">
                <p>Have you read this book?</p>
                <div class="book__isread">
+                  <span class="span__no">No</span>
                   <input type="checkbox" id="book__read">
-                  <label for="" class="read__yes">Yes</label>
-                  <label for="" class="read__no">No</label>
+                  <span class="span__yes">Yes</span>
                </div>
             </div>
 

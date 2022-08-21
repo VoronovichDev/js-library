@@ -96,6 +96,8 @@ th {
    grid-column: 1 / 3;
    justify-self: center;
    align-self: center;
+   font-size: 34px;
+   font-weight: 700;
 }
 /*sidebar*/
 .sidebar {
@@ -107,24 +109,79 @@ th {
    display: grid;
    grid-template-columns: 1fr 1fr;
    row-gap: 15px;
+   padding: 15px;
+   border-radius: 15px;
+   background-color: rgb(171, 201, 250);
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add__title {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   width: 100%;
+}
+.add__title p {
+   align-self: center;
+}
+.add__title input {
+   height: 25px;
+   border: none;
+   outline: 0;
+   border-radius: 4px;
+   background-color: rgb(228, 241, 255);
+}
+.add__author {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   width: 100%;
+}
+.add__author p {
+   align-self: center;
+}
+
+.add__author input {
+   height: 25px;
+   border: none;
+   outline: 0;
+   border-radius: 4px;
+   background-color: rgb(228, 241, 255);
+}
+
+.add__pages {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   gap: 5px;
+}
+.add__pages p {
+   align-self: center;
+}
+.add__pages input {
+   height: 25px;
+   border: none;
+   outline: 0;
+   border-radius: 4px;
+   background-color: rgb(228, 241, 255);
 }
 
 .sidebar form button {
    grid-column: 1 / span 2;
    grid-row: 5;
-   cursor: pointer;
    width: 80px;
    height: 30px;
+   justify-self: end;
+   cursor: pointer;
    border: none;
    border-radius: 20px;
-   background-color: rgb(189, 195, 255);
-   justify-self: center;
+   background-color: rgba(101, 101, 246, 0.605);
    transition: all 0.3s ease;
    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar form button:hover {
-   background-color: rgb(158, 166, 247);
+   background-color: rgb(103, 114, 235);
 }
 
 .add__book .add__isread p {
@@ -139,29 +196,54 @@ th {
    justify-self: center;
 }
 
+.add__isread {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 10px;
+}
+
+.add__isread .book__isread {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+.span__no {
+   font-weight: 700;
+   color: rgb(255, 40, 75);
+   text-shadow: 1px 1px 2px rgb(255, 122, 144);
+}
+.span__yes {
+   font-weight: 700;
+   color: rgb(0, 138, 14);
+   text-shadow: 1px 1px 2px rgb(138, 255, 149);
+}
+
 /*bookshelf*/
 .bookshelf {
-   align-self: start;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
    grid-row: 2;
    grid-column: 1/2;
-   display: grid;
+   align-self: start;
    gap: 3vw;
-   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 /*book*/
 .book {
    display: grid;
-   row-gap: 15px;
    grid-template-columns: 1fr 1fr;
+   row-gap: 15px;
+   padding: 15px;
    background-color: #fff;
    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
    border-radius: 10px;
-   padding: 15px;
 }
 
 .book__title {
+   font-weight: 700;
    justify-self: center;
+   text-align: center;
 }
 
 .book__title,
@@ -175,11 +257,11 @@ th {
 }
 
 .book__remove {
+   height: 30px;
+   width: 80px;
    grid-column: 1;
    grid-row: 4;
    cursor: pointer;
-   width: 80px;
-   height: 30px;
    border: none;
    border-radius: 20px;
    background-color: rgba(255, 255, 255, 0.504);
@@ -228,12 +310,13 @@ input:checked[type='checkbox']::before {
    left: 35px;
 }
 
-.book__isread {
+.book .book__isread {
    position: relative;
    display: inline;
    font-size: 12px;
    font-weight: 700;
    justify-self: end;
+   align-self: end;
 }
 
 .book__isread label {
@@ -249,4 +332,51 @@ input:checked[type='checkbox']::before {
 .read__no {
    bottom: 9px;
    right: 0.5vw;
+}
+
+/*media queries*/
+@media (max-width: 992px) {
+   .container {
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 100px auto;
+   }
+}
+
+@media (max-width: 767px) {
+   .bookshelf {
+      justify-content: center;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 0.5fr));
+   }
+   .container {
+      grid-template-columns: 3fr 5fr;
+      grid-template-rows: 100px auto;
+   }
+}
+
+@media (max-width: 480px) {
+   .container {
+      display: grid;
+      grid-template-rows: 50px 300px 1fr;
+      gap: 10px;
+      padding: 0 10px;
+   }
+   .header {
+      grid-column: 1/3;
+      grid-row: 1;
+   }
+   .sidebar {
+      grid-column: 1/3;
+      grid-row: 2;
+      align-self: center;
+      justify-self: center;
+      width: 100%;
+   }
+   .bookshelf {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-column: 1/3;
+      grid-row: 3;
+      align-self: center;
+      justify-self: center;
+      padding: 15px 0 0 0;
+   }
 }

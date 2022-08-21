@@ -27,7 +27,7 @@ const showBooks = (newBook) => {
    bookshelf.insertAdjacentHTML("beforeend", `<div class="book" data-num="${myLibrary.indexOf(newBook)}">
          <div class="book__title">${newBook.title}</div>
          <div class="book__author">${newBook.author}</div>
-         <div class="book__pages">${newBook.pages}</div>
+         <div class="book__pages">${newBook.pages}pages</div>
          <div class="book__isread">
             <input type="checkbox" ${newBook.read ? "checked" : ""}>
             <label for="" class="read__yes">Yes</label>
@@ -66,7 +66,7 @@ const renderAllBooks = (lib) => {
       bookshelf.insertAdjacentHTML("beforeend", `<div class="book" data-num="${myLibrary.indexOf(book)}">
       <div class="book__title">${book.title}</div>
       <div class="book__author">${book.author}</div>
-      <div class="book__pages">${book.pages}</div>
+      <div class="book__pages">${book.pages} pages </div>
       <div class="book__isread">
          <input type="checkbox" ${book.read ? "checked" : ""}>
          <label for="" class="read__yes">Yes</label>
@@ -79,5 +79,4 @@ const renderAllBooks = (lib) => {
 
 const toggleReadStatus = (index) => {
    myLibrary[index].read = !myLibrary[index].read
-   console.log(myLibrary[index])
 }
