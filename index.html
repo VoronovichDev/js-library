@@ -15,27 +15,27 @@
    <div class="container">
       <h1 class="header">Your Library</h1>
       <div class="sidebar">
-         <form action="#" class="add__book">
+         <form action="#" autocomplete="off" name="addBook" class="add__book">
 
             <div class="add__title">
                <p>Enter book title</p>
-               <input type="text" id="title__book">
+               <input required type="text" id="title__book">
             </div>
 
             <div class="add__author">
                <p>Enter author's name</p>
-               <input type="text" id="author__book">
+               <input required type="text" id="author__book">
             </div>
 
             <div class="add__pages">
-               <p>Enter author's name</p>
-               <input type="text" id="pages__book">
+               <p>Enter number of pages</p>
+               <input required type="text" id="pages__book">
             </div>
 
             <div class="add__isread">
                <p>Have you read this book?</p>
                <div class="book__isread">
-                  <input type="checkbox">
+                  <input type="checkbox" id="book__read">
                   <label for="" class="read__yes">Yes</label>
                   <label for="" class="read__no">No</label>
                </div>
