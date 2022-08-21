@@ -37,7 +37,6 @@ const showBooks = (newBook) => {
       </div>`)
 }
 
-
 function addBookToLibrary(title, author, pages, read) {
    let newBook = new Book(title, author, pages, read)
    myLibrary = [...myLibrary, newBook]
@@ -45,11 +44,15 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 bookshelf.addEventListener('click', e => {
-   if (e.target.tagName !== 'BUTTON') {
-      return
-   }
-   let bookIndex = e.target.parentNode.dataset.num
-   removeBookFromLibrary(bookIndex)
+   if (e.target.tagName === 'BUTTON') {
+      let bookIndex = e.target.parentNode.dataset.num
+      removeBookFromLibrary(bookIndex)
+   } else if (e.target.tagName === 'INPUT') {
+      let bookIndex = e.target.parentNode.parentNode.dataset.num
+      toggleReadStatus(bookIndex)
+   } else return
+
+
 })
 
 function removeBookFromLibrary(index) {
@@ -72,4 +75,9 @@ const renderAllBooks = (lib) => {
       <button type="button" class="book__remove">Delete</button>
    </div>`)
    })
+}
+
+const toggleReadStatus = (index) => {
+   myLibrary[index].read = !myLibrary[index].read
+   console.log(myLibrary[index])
 }
