@@ -27,7 +27,7 @@ const showBooks = (newBook) => {
    bookshelf.insertAdjacentHTML("beforeend", `<div class="book" data-num="${myLibrary.indexOf(newBook)}">
          <div class="book__title">${newBook.title}</div>
          <div class="book__author">${newBook.author}</div>
-         <div class="book__pages">${newBook.pages}pages</div>
+         <div class="book__pages">${newBook.pages} pages</div>
          <div class="book__isread">
             <input type="checkbox" ${newBook.read ? "checked" : ""}>
             <label for="" class="read__yes">Yes</label>
@@ -51,8 +51,6 @@ bookshelf.addEventListener('click', e => {
       let bookIndex = e.target.parentNode.parentNode.dataset.num
       toggleReadStatus(bookIndex)
    } else return
-
-
 })
 
 function removeBookFromLibrary(index) {
