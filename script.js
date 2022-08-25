@@ -3,13 +3,12 @@ let myLibrary = [];
 const bookshelf = document.querySelector('.bookshelf')
 let addBookForm = document.forms.addBook
 
-function Book(title, author, pages, read) {
-   this.title = title;
-   this.author = author;
-   this.pages = pages;
-   this.read = read;
-   this.info = function () {
-      return `${title} by ${author}, ${pages} pages, ${read ? "read" : "not read yet"}`
+class Book {
+   constructor(title, author, pages, read) {
+      this.title = title;
+      this.author = author;
+      this.pages = pages;
+      this.read = read;
    }
 }
 
